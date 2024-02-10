@@ -1,44 +1,8 @@
-
 public class Operations {
 
     public static void main(String[] args) {
         // Check if three arguments are provided
-
-
-        Scanner scanner = new Scanner(System.in);
-        
-        // Variables to store converted numbers
-        long[] decimalNumbers = new long[3];
-        
-        System.out.println("Please provide three numbers in binary (0b prefix), hexadecimal (0x prefix), or decimal format:");
-        
-        // Parse and validate inputs
-        for (int i = 0; i < 3; i++) {
-            System.out.print("Enter number " + (i + 1) + ": ");
-            String input = scanner.nextLine();
-            decimalNumbers[i] = parseInput(input);
-            if (decimalNumbers[i] == -1) {
-                System.out.println("Invalid input: " + input);
-                i--; // Ask for the number again if the input was invalid
-            }
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /*if (args.length != 3) {
+        if (args.length != 3) {
             System.out.println("Please provide three numbers in binary (0b prefix), hexadecimal (0x prefix), or decimal format.");
             return;
         }
@@ -47,13 +11,13 @@ public class Operations {
         long[] decimalNumbers = new long[3];
         
         // Parse and validate inputs
-         for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++) {
             decimalNumbers[i] = parseInput(args[i]);
             if (decimalNumbers[i] == -1) {
                 System.out.println("Invalid input: " + args[i]);
                 return;
             }
-        }*/
+        }
         
         // Convert numbers to other bases and calculate complements
         for (long number : decimalNumbers) {
@@ -65,29 +29,25 @@ public class Operations {
         
         // Perform bitwise shifts
         performBitwiseShifts(decimalNumbers);
-        scanner.close();
     }
-        
+
     private static long parseInput(String input) {
         try {
             if (input.startsWith("0b")) {
                 // Binary
                 return Long.parseLong(input.substring(2), 2);
-            } else if (input.startsWith("0x")) 
-            {
+            } else if (input.startsWith("0x")) {
                 // Hexadecimal
                 return Long.parseLong(input.substring(2), 16);
-            } else 
-            {
+            } else {
                 // Decimal
                 return Long.parseLong(input);
             }
-        } catch (NumberFormatException e) 
-        {
+        } catch (NumberFormatException e) {
             return -1; // Indicate invalid input
         }
     }
-        
+
     private static void printConversionsAndComplements(long number) {
         System.out.println("Decimal: " + number);
         System.out.println("Binary: " + Long.toBinaryString(number));
@@ -95,7 +55,7 @@ public class Operations {
         System.out.println("1's Complement: " + Long.toBinaryString(~number));
         System.out.println("2's Complement: " + Long.toBinaryString(~number + 1));
     }
-        
+
     private static void performBitwiseOperations(long[] numbers) {
         long orResult = numbers[0] | numbers[1] | numbers[2];
         long andResult = numbers[0] & numbers[1] & numbers[2];
@@ -105,7 +65,7 @@ public class Operations {
         System.out.println("Bitwise AND: " + andResult);
         System.out.println("Bitwise XOR: " + xorResult);
     }
-        
+
     private static void performBitwiseShifts(long[] numbers) {
         for (long number : numbers) {
             System.out.println("Original: " + number);
@@ -114,4 +74,4 @@ public class Operations {
             System.out.println("Unsigned Right Shift (>>> 2): " + (number >>> 2));
         }
     }
-}  
+}
